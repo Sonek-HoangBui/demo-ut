@@ -26,7 +26,8 @@ def handleClick(driver, xpath):
 
 class SimpleTest(unittest.TestCase):
     domain = "https://dev.nft.mobilelab.vn"
-    domainCollection = "https://dev.nft.mobilelab.vn/collection/383"
+    # domainCollection = "https://dev.nft.mobilelab.vn/collection/383"
+    domainCollection = "https://dev.nft.mobilelab.vn/collection/554"
 
     showStakeInfoBtnEl = "(//button[@type='button'])[2]"
     searchInputEl = "//input[@type='text']"
@@ -99,7 +100,7 @@ class SimpleTest(unittest.TestCase):
         time.sleep(3)
         handleClick(self.driver, self.checkoutBtnEl)
 
-        time.sleep(25)
+        time.sleep(15)
         # element.click()
 
     async def login(self):
@@ -130,14 +131,14 @@ class SimpleTest(unittest.TestCase):
             print(pbstring)
 
             # os.system("cd /Users/jeff/github/golang-automation && godog --tags=@android --random --format=cucumber")
-            cmd = "echo '{0}' > /Users/jeff/github/golang-automation/wc".format(pbstring)
+            # cmd = "echo '{0}' > /Users/jeff/github/golang-automation/wc".format(pbstring)
             
-            proc = await asyncio.create_subprocess_shell(
-                cmd,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE)
+            # proc = await asyncio.create_subprocess_shell(
+            #     cmd,
+            #     stdout=asyncio.subprocess.PIPE,
+            #     stderr=asyncio.subprocess.PIPE)
 
-            proc.communicate()
+            # proc.communicate()
             # subprocess.create_subprocess_shell("cd /Users/jeff/github/golang-automation && godog --tags=@android --random --format=cucumber")
             # print(f'[{cmd!r} exited with {proc.returncode}]')
             # if stdout:
@@ -145,7 +146,7 @@ class SimpleTest(unittest.TestCase):
             # if stderr:
             #     print(f'[stderr]\n{stderr.decode()}')
 
-            time.sleep(45)
+            time.sleep(15)
         except Exception as inst:
             # sleep 5s to retry
             print(inst)
