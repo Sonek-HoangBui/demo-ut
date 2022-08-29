@@ -27,7 +27,7 @@ def handleClick(driver, xpath):
 class SimpleTest(unittest.TestCase):
     domain = "https://dev.nft.mobilelab.vn"
     # domainCollection = "https://dev.nft.mobilelab.vn/collection/383"
-    domainCollection = "https://dev.nft.mobilelab.vn/collection/554"
+    domainCollection = "https://dev.nft.mobilelab.vn/asset?collection_id=620&status=8"
 
     showStakeInfoBtnEl = "(//button[@type='button'])[2]"
     searchInputEl = "//input[@type='text']"
@@ -38,6 +38,7 @@ class SimpleTest(unittest.TestCase):
     spanPriceEl = "//span[normalize-space()='Price']"
     buyBtnEl = "//span[normalize-space()='Buy Now']"
     checkoutBtnEl = "//span[normalize-space()='Checkout']"
+    apprBtnEl = "//span[normalize-space()='Approve item']"
 
     def setUp(self):
         print('setUp')
@@ -93,11 +94,15 @@ class SimpleTest(unittest.TestCase):
             y += 800
             if y > 8000:
                 break
-
+        
         time.sleep(3)
         handleClick(self.driver, self.buyBtnEl)
 
-        time.sleep(3)
+        if getElement(self.driver, self.apprBtnEl) is not None:
+            time.sleep(1)
+            handleClick(self.driver, self.apprBtnEl)
+            time.sleep(15)
+        
         handleClick(self.driver, self.checkoutBtnEl)
 
         time.sleep(15)

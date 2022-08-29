@@ -83,18 +83,7 @@ class SimpleTest(unittest.TestCase):
                         print(packagesEl.__len__(), keySearch[0], ': https://github.com/Sonek-HoangBui/demo-ut/blob/main/unittest/demo.py#L83')
                         stakingEl.screenshot(keySearch[0] +'_'+str(packagesEl.__len__())+'.png')
                         for i in range(packagesEl.__len__()):
-                            self.assertTrue(keySearch[0].lower() in packagesEl[i].text.lower(), "result not contain search string")
-
-            
-            
-            
-            # emptyEl = self.driver.find_element(by=By.XPATH, value=self.emptyImgEl)
-            
-            # # testcase is empty
-            # self.assertEqual(emptyEl.is_displayed(), True, "Failed size is not empty")
-
-            # # testcase is failed
-            # self.assertEqual(emptyEl.is_displayed(), False, "Is empty")
+                            self.assertTrue(keySearch[0].lower() not in packagesEl[i].text.lower(), "result not contain search string")
 
         except Exception as ex:
             # sleep 5s to retry
