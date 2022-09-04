@@ -9,7 +9,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import json
-from AppKit import NSPasteboard, NSStringPboardType
+# from AppKit import NSPasteboard, NSStringPboardType
 
 
 def getElement(driver, xpath):
@@ -27,7 +27,9 @@ def handleClick(driver, xpath):
 class SimpleTest(unittest.TestCase):
     domain = "https://dev.nft.mobilelab.vn"
     # domainCollection = "https://dev.nft.mobilelab.vn/collection/383"
-    domainCollection = "https://dev.nft.mobilelab.vn/asset?collection_id=620&status=8"
+    # domainCollection = "https://dev.nft.mobilelab.vn/asset?collection_id=667&status=8"
+    domainCollection = "https://dev.nft.mobilelab.vn/asset?status=8"
+    # domainCollection = "https://dev.nft.mobilelab.vn/asset?collection_id=620&status=8"
 
     showStakeInfoBtnEl = "(//button[@type='button'])[2]"
     searchInputEl = "//input[@type='text']"
@@ -97,11 +99,14 @@ class SimpleTest(unittest.TestCase):
         
         time.sleep(3)
         handleClick(self.driver, self.buyBtnEl)
+        time.sleep(5)
+        el = getElement(self.driver, self.apprBtnEl)
 
-        if getElement(self.driver, self.apprBtnEl) is not None:
-            time.sleep(1)
+        print(el)
+        if el is not None:
+            time.sleep(3)
             handleClick(self.driver, self.apprBtnEl)
-            time.sleep(15)
+            time.sleep(30)
         
         handleClick(self.driver, self.checkoutBtnEl)
 
@@ -112,12 +117,12 @@ class SimpleTest(unittest.TestCase):
         print('testStaking')
         ## click vào staking
         try:
-            cmdRunMobile = "cd /Users/jeff/github/golang-automation && godog --tags=@android --random --format=cucumber"
-            procMobile = await asyncio.create_subprocess_shell(
-                cmdRunMobile,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE)
-            procMobile.communicate()
+            # cmdRunMobile = "cd /Users/jeff/github/golang-automation && godog --tags=@android --random --format=cucumber"
+            # procMobile = await asyncio.create_subprocess_shell(
+            #     cmdRunMobile,
+            #     stdout=asyncio.subprocess.PIPE,
+            #     stderr=asyncio.subprocess.PIPE)
+            # procMobile.communicate()
 
             time.sleep(1)
             element = self.driver.find_element(by=By.XPATH,value=self.btnLoginEl)
@@ -131,9 +136,9 @@ class SimpleTest(unittest.TestCase):
             element2 = self.driver.find_element(by=By.XPATH, value=self.cpBtnEl)
             element2.click()
 
-            pb = NSPasteboard.generalPasteboard()
-            pbstring = pb.stringForType_(NSStringPboardType)
-            print(pbstring)
+            # pb = NSPasteboard.generalPasteboard()
+            # pbstring = pb.stringForType_(NSStringPboardType)
+            # print(pbstring)
 
             # os.system("cd /Users/jeff/github/golang-automation && godog --tags=@android --random --format=cucumber")
             # cmd = "echo '{0}' > /Users/jeff/github/golang-automation/wc".format(pbstring)
